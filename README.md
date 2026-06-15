@@ -1,6 +1,6 @@
 # Uniform Scraper
 
-Scraping de precios y disponibilidad de uniformes médicos en **Argentina** y **Chile** (sin MercadoLibre).
+Scraping de precios y disponibilidad de uniformes médicos en **Chile** (sin MercadoLibre).
 
 
 
