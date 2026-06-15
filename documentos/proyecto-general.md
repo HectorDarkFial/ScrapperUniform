@@ -18,7 +18,7 @@ Este documento resume la estructura funcional del sistema y define una organizac
 3. La exportación toma solo la última corrida exitosa (no histórico completo).
 4. Se generan archivos en `data/exports/` y se descargan desde el panel.
 
-## Organización de código (convención)
+## Organización de código 
 
 - **UI y estado**: `frontend/src/app/components`, `frontend/src/app/context`, `frontend/src/app/api`.
 - **Endpoints HTTP**: `portal/api_views.py` y rutas en `portal/api_urls.py`.
