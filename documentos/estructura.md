@@ -73,7 +73,7 @@ asaaa/
 ## Dónde cambiar qué
 
 | Tarea |-------| Dónde |
-|-------|--------|-------|
+|-------|--------|-------|-------|--------|-------|
 | Cambiar URL de una tienda||-------|--------| Panel → Proveedores o `config/sites/*.yaml` |
 | Agregar tienda nueva |---------|---------| Panel → Proveedores |
 | Ajustar delay / User-Agent |--------|--------| `config/settings.yaml` |
