@@ -55,7 +55,7 @@
 - Argentina: Terzo (`/producto/`).
 - Chile: Scrubplus (`/producto/`).
 
-## robots.txt
+## bots.txt
 
 Revisar antes de corridas masivas. Delay recomendado: 2–3 s entre requests.
 
