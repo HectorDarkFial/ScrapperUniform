@@ -7,7 +7,7 @@ Este proyecto recopila URLs públicas de **proveedores configurados** para anál
 ### 1. URLs al scrapear
 
 - Solo esquemas **http/https** (bloqueo de `javascript:`, `data:`, `file:`, etc.).
-- Bloqueo de hosts **locales/privados** (SSRF: `127.0.0.1`, `localhost`, redes internas).
+- Bloqueo de hosts **locales/privados** (SSRF:`localhost`, redes internas).
 - Solo se descargan páginas de **dominios del proveedor** definidos en `config/sites/*.yaml`.
 - MercadoLibre y dominios en `excluded_domains` siguen bloqueados.
 
