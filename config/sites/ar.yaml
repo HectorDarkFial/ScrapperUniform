@@ -1,0 +1,34 @@
+sites:
+  soul_uniform:
+    enabled: false
+    country: AR
+    name: Soul Uniform
+    base_url: https://www.souluniform.com.ar
+    currency: ARS
+    scraper: tiendanube
+    catalog_urls:
+    - https://www.souluniform.com.ar/productos/
+    product_link_pattern: /productos/
+    delay_seconds: 2.0
+  coco_wear:
+    enabled: false
+    country: AR
+    name: COCO Uniformes Médicos
+    base_url: https://www.cocowearshop.com
+    currency: ARS
+    scraper: tiendanube
+    catalog_urls:
+    - https://www.cocowearshop.com/productos/
+    product_link_pattern: /productos/
+    delay_seconds: 2.0
+  dara_scrubs:
+    enabled: false
+    country: AR
+    name: Dara Scrubs
+    base_url: https://www.darascrubs.ar
+    currency: ARS
+    scraper: tiendanube
+    catalog_urls:
+    - https://www.darascrubs.ar/productos/
+    product_link_pattern: /productos/
+    delay_seconds: 2.0

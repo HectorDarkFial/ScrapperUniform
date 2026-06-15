@@ -1,0 +1,30 @@
+database:
+  path: data/uniforms.db
+
+http:
+  user_agent: "UniformScraper/1.0 (+market-research; contact: local)"
+  timeout_seconds: 25
+  delay_seconds: 0.6
+  max_retries: 2
+  respect_robots: true
+
+scraping:
+  default_max_pages: 3
+  default_max_products_per_site: 50
+  fast_mode: true
+  skip_robots_in_fast_mode: true
+  concurrent_product_requests: 8
+
+excluded_domains:
+  - mercadolibre.com.ar
+  - mercadolibre.cl
+  - mercadolibre.com
+  - mercadolibre.com.mx
+
+# Seguridad: URLs y exportación Excel
+security:
+  max_url_length: 2000
+  block_private_ips: true
+  require_https_for_export: false
+  export_only_trusted_urls: false
+  block_unverified_in_export: true

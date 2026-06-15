@@ -1,0 +1,125 @@
+{% extends "portal/base.html" %}
+
+{% block title %}Dashboard — Uniform Scraper{% endblock %}
+
+{% block content %}
+<section class="panel stats">
+  <h2>Resumen</h2>
+  <div class="stat-grid">
+    <div class="stat-card"><span class="stat-label">Productos</span><span class="stat-value">{{ stats.total_products }}</span></div>
+    <div class="stat-card"><span class="stat-label">Tiendas activas</span><span class="stat-value">{{ stats.active_sites }} / {{ stats.total_sites }}</span></div>
+    <div class="stat-card"><span class="stat-label">Último job</span><span class="stat-value" id="jobStatusLabel">{% if latest_job %}{{ latest_job.get_status_display }}{% else %}—{% endif %}</span></div>
+  </div>
+</section>
+
+<section class="panel log-panel">
+  <h2>Actividad</h2>
+  <div id="jobLiveStatus" class="job-live-status" hidden>
+    <div class="job-live-header">
+      <span id="jobTypeBadge" class="job-type-badge">Scraping</span>
+      <span id="jobProgressMessage" class="job-progress-message">Preparando…</span>
+    </div>
+    <div class="progress-track" aria-hidden="true">
+      <div id="jobProgressFill" class="progress-fill" style="width: 0%"></div>
+    </div>
+    <div class="job-live-meta">
+      <span id="jobProgressPct">0%</span>
+      <span id="jobEta"></span>
+      <span id="jobProductsLine"></span>
+    </div>
+  </div>
+  <p id="jobErrorLine" class="job-error-line" hidden></p>
+  <pre class="log" id="jobLog">{% if latest_job %}{{ latest_job.log }}{% else %}Sin actividad.{% endif %}</pre>
+</section>
+
+{% if export_state %}
+<section class="panel">
+  <p class="export-hint {% if export_state.canExport %}ok{% else %}warn{% endif %}">
+    {{ export_state.message }}
+    {% if export_state.exportableProducts %}({{ export_state.exportableProducts }} productos exportables){% endif %}
+  </p>
+</section>
+{% endif %}
+
+<section class="panel">
+  <h2>Ejecutar scraping</h2>
+  <form method="post" action="{% url 'run_scrape' %}" class="form-inline">
+    {% csrf_token %}
+    {{ run_form.as_p }}
+    <button type="submit" class="btn btn-primary">▶ Ejecutar todo</button>
+  </form>
+  <form method="post" action="{% url 'run_export' %}" class="form-inline" style="margin-top:0.75rem">
+    {% csrf_token %}
+    <input type="hidden" name="export_format" value="xlsx" />
+    <button type="submit" class="btn btn-secondary">⬇ Exportar Excel</button>
+  </form>
+</section>
+
+<section class="panel form-panel">
+  <h2>Formulario rápido (guardar tienda)</h2>
+  <form method="post" action="{% url 'site_save' %}" class="form-grid django-form">
+    {% csrf_token %}
+    {{ site_form.as_p }}
+    <div class="form-actions full">
+      <button type="submit" class="btn btn-primary">💾 Guardar</button>
+      <a href="{% url 'site_create' %}" class="btn btn-ghost">Formulario completo</a>
+    </div>
+  </form>
+</section>
+
+<section class="panel sites-panel">
+  <h2>Tiendas configuradas</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Tienda</th><th>País</th><th>Motor</th><th>Estado</th><th></th></tr>
+      </thead>
+      <tbody>
+        {% for site in sites %}
+        <tr>
+          <td><strong>{{ site.name }}</strong><br><small>{{ site.base_url }}</small></td>
+          <td>{{ site.country }}</td>
+          <td>{{ site.scraper }}</td>
+          <td><span class="badge {% if site.enabled %}badge-on{% else %}badge-off{% endif %}">{% if site.enabled %}Activo{% else %}Off{% endif %}</span></td>
+          <td>
+            <form method="post" action="{% url 'run_scrape' %}" style="display:inline">{% csrf_token %}
+              <input type="hidden" name="site_slug" value="{{ site.slug }}" />
+              <input type="hidden" name="country" value="{{ site.country }}" />
+              <input type="hidden" name="max_products" value="50" />
+              <input type="hidden" name="max_pages" value="3" />
+              <input type="hidden" name="do_export" value="" />
+              <input type="hidden" name="export_format" value="xlsx" />
+              <button class="btn btn-sm btn-accent" type="submit">▶</button>
+            </form>
+            <a href="{% url 'site_edit' site.slug %}" class="btn btn-sm btn-ghost">Editar</a>
+          </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="5">No hay tiendas. <a href="{% url 'site_create' %}">Crear una</a> o ejecutá <code>python manage.py import_sites</code>.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="panel products-panel">
+  <h2>Últimos productos</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Proveedor</th><th>Producto</th><th>Precio</th><th>Stock</th></tr></thead>
+      <tbody>
+        {% for p in products %}
+        <tr>
+          <td>{{ p.source }}</td>
+          <td>{{ p.name|truncatechars:50 }}</td>
+          <td>{% if p.price %}{{ p.price }} {{ p.currency }}{% else %}—{% endif %}</td>
+          <td>{{ p.availability }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="4">Sin datos. Ejecutá scraping.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "portal/base.html" %}
+
+{% block title %}{% if site %}Editar {{ site.name }}{% else %}Nueva tienda{% endif %}{% endblock %}
+
+{% block content %}
+<section class="panel form-panel">
+  <h2>{% if site %}Editar tienda{% else %}Nueva tienda{% endif %}</h2>
+  <form method="post" class="form-grid django-form">
+    {% csrf_token %}
+    {% for field in form %}
+    <label class="{% if field.field.widget.input_type == 'textarea' or field.name == 'catalog_urls' %}full{% endif %}">
+      {{ field.label }}
+      {{ field }}
+      {% if field.help_text %}<small>{{ field.help_text }}</small>{% endif %}
+      {% for e in field.errors %}<span class="field-error">{{ e }}</span>{% endfor %}
+    </label>
+    {% endfor %}
+    <div class="form-actions full">
+      <button type="submit" class="btn btn-primary">💾 Guardar y sincronizar YAML</button>
+      <a href="{% url 'dashboard' %}" class="btn btn-ghost">Volver</a>
+    </div>
+  </form>
+</section>
+{% endblock %}

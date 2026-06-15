@@ -1,0 +1,62 @@
+sites:
+  suitmed_cl:
+    enabled: false
+    country: CL
+    name: Suitmed Uniformes Clínicos
+    base_url: https://www.suitmed.cl
+    currency: CLP
+    scraper: shopify
+    catalog_urls:
+    - https://www.suitmed.cl/collections/all
+    product_link_pattern: /products/
+    delay_seconds: 2.0
+  scorpi_cl:
+    enabled: true
+    country: CL
+    name: Scorpi Uniformes Clínicos
+    base_url: https://www.scorpi.cl
+    currency: CLP
+    scraper: shopify
+    catalog_urls:
+    - https://www.scorpi.cl/collections/todo-mujer-y-hombre
+    - https://www.scorpi.cl/collections/l-nea-comfort
+    - https://www.scorpi.cl/collections/scorpi-wonder
+    product_link_pattern: /products/
+    delay_seconds: 2.0
+  allscrubs_cl:
+    enabled: false
+    country: CL
+    name: All Scrubs Chile
+    base_url: https://allscrubs.cl
+    currency: CLP
+    scraper: shopify
+    catalog_urls:
+    - https://allscrubs.cl/collections/ropa-mujer
+    - https://allscrubs.cl/collections/ropa-hombre
+    - https://allscrubs.cl/collections/all
+    product_link_pattern: /products/
+    delay_seconds: 2.5
+  scrubplus_cl:
+    enabled: false
+    country: CL
+    name: Scrubplus Chile
+    base_url: https://scrubplus.cl
+    currency: CLP
+    scraper: woocommerce
+    catalog_urls:
+    - https://scrubplus.cl/tienda/
+    product_link_pattern: /producto/
+    delay_seconds: 2.5
+  ripholiamed:
+    enabled: false
+    country: CL
+    name: Ripholiamed
+    base_url: https://ripholiamed.cl
+    currency: CLP
+    scraper: tiendanube
+    catalog_urls:
+    - https://ripholiamed.cl/collections/all
+    - https://ripholiamed.cl/collections/mujer
+    - https://ripholiamed.cl/collections/hombre
+    product_link_pattern: /productos/
+    delay_seconds: 2.0

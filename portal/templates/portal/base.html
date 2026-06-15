@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Uniform Scraper{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'portal/css/dashboard.css' %}" />
+</head>
+<body>
+  <header class="header">
+    <div>
+      <h1><a href="{% url 'dashboard' %}" class="logo-link">Uniform Scraper</a></h1>
+      <p class="subtitle">Panel Django — configuración, scraping y exportación</p>
+    </div>
+    <nav class="header-nav">
+      <a href="{% url 'dashboard' %}">Dashboard legacy</a>
+      <a href="{% url 'site_create' %}">+ Nueva tienda</a>
+      <a href="/">Panel nuevo</a>
+      <a href="/export">Exportar (React)</a>
+      <a href="/admin/" target="_blank">Admin</a>
+    </nav>
+  </header>
+
+  {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+    <li class="msg msg-{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+  <main class="layout">
+    {% block content %}{% endblock %}
+  </main>
+  <script src="{% static 'portal/js/dashboard.js' %}"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

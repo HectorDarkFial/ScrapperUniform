@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.env
+.venv/
+venv/
+*.db
+data/raw/*.html
+!data/raw/.gitkeep
+data/exports/*.csv
+data/exports/*.xlsx
+data/exports/*.parquet
+!data/exports/.gitkeep
+.pytest_cache/
+*.log
+frontend/node_modules/
+frontend/package-lock.json
