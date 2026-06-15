@@ -72,9 +72,10 @@ asaaa/
 
 ## Dónde cambiar qué
 
-| Tarea | Dónde |
+| Tarea |-------|--------|-------|--------|-------|-------|--------|--------| Dónde |--------|--------|
+|-------|--------|-------|--------|-------|-------|-------|--------|-------|--------|--------|--------|
+| Cambiar URL de una tienda||-------|--------||-------|--------| Panel → Proveedores o `config/sites/*.yaml` |
+| Agregar tienda nueva |---------|---------||--------|---------| Panel → Proveedores |
+| Ajustar delay / User-Agent |--------|--------||------|-------| `config/settings.yaml` |
+| Nuevo tipo de sitio web |---------|---------||--------|------| `src/scrapers/` + `registry.py` |
 
-| Cambiar URL de una tienda| Panel → Proveedores o `config/sites/*.yaml` |
-| Agregar tienda nueva |Panel → Proveedores |
-| Ajustar delay / User-Agent | `config/settings.yaml` |
-| Nuevo tipo de sitio web | `src/scrapers/` + `registry.py` |
